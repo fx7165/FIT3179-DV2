@@ -1,12 +1,16 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 600,
+    "padding": 5,
+    "autosize": "none",
     "title": {
-        "text": "Cheapest European Cities"
+        "text": "Reptile Species Variance"
     },
     "data": {
-        
+        "url": "../data_source/AROD_species_state.csv"
     },
-    "mark": "bar",
+    "mark": "arc",
     "encoding": {
         "x": {
             "field": "daily_cost",
