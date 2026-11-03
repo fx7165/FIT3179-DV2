@@ -1,8 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "State Distribution",
+  "title": "State Distribution of Reptiles",
   "width": "container",
   "height": "container",
+  "description": "Distribution of species across Australian states",
   "projection": {"type": "mercator"},
   "data": {
     "url": "../data_source/AUS_state_topo.json",

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "transparent",
+  "title": {
+    "text": "Australian Reptile Sizes",
+    "anchor": "start"
+  },
+  "width": "container",
+  "height": "container",
+  "description": "A bar chart showing the US population distribution of age groups in 2000.",
+  "data": {
+    "url": "../data_source/reptile_sizes.json"
+  },
+  "mark": {
+    "type": "bar",
+    "color": "#2e7d32"
+  },
+  "encoding": {
+    "y": {
+      "field": "species",
+      "sort": "-x",
+      "type": "nominal",
+      "title": "Species"
+    },
+    "x": {
+      "aggregate": "sum",
+      "field": "length_m",
+      "title": "Size (m)",
+      "type": "quantitative"
+    },
+    "tooltip": [
+      {
+        "field": "species",
+        "type": "nominal",
+        "title": "Species"
+      },
+      {
+        "aggregate": "sum",
+        "field": "length_m",
+        "type": "quantitative",
+        "title": "Average Size (m)",
+        "format": ".2f"
+      }
+    ]
+  }
+}

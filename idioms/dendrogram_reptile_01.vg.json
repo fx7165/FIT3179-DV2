@@ -3,7 +3,7 @@
   "title": "Australian Reptile Taxonomy",
   "description": "Dendrogram of Australian Reptile Species (order > family > genus).",
   "width": 500,
-  "height": 400,
+  "height": 500,
   "autosize": {
     "type": "fit",
     "contains": "padding",

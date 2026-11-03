@@ -1,0 +1,15 @@
+[
+    {"species": "Freshwater Crocodile", "length_m": 3.0},
+    {"species": "Saltwater Crocodile", "length_m": 4.0},
+    {"species": "Olive sea snake", "length_m": 1.70},
+    {"species": "Olive ridley turtle", "length_m": 0.7},
+    {"species": "Green turtle", "length_m": 1.5},
+    {"species": "Coastal taipan", "length_m": 3},
+    {"species": "Olive python", "length_m": 6.5},
+    {"species": "Eastern bearded dragon", "length_m": 0.25},
+    {"species": "Northern leaf-tailed gecko", "length_m": 0.144},
+    {"species": "Burton's legless lizard", "length_m": 0.6},
+    {"species": "Common blue-tongued skink", "length_m": 0.33},
+    {"species": "Perentie", "length_m": 2.4},
+    {"species": "Brown tree snake", "length_m": 1.4}
+]
