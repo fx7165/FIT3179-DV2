@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "IBRA Species Persistence",
+  "width": "container",
+  "height": "container",
+  "description": "Distribution of species across Australian IBRA Sub-regions",
+  "projection": {"type": "mercator"},
+  "data": {
+    "url": "../data_source/ibra7_subregions.json",
+    "format": {"type": "topojson", "feature": "ibra7_subregions"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.SUB_NAME_7",
+      "from": {
+        "data": {
+          "url": "../data_source/species_persistance_ibra.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "Region",
+        "fields": ["2024"]
+      }
+    },
+    {"calculate": "toNumber(datum['2024'])", "as": "Persistence"}
+  ],
+  "mark": {"type": "geoshape"},
+  "encoding": {
+    "color": {
+      "field": "Persistence",
+      "type": "quantitative",
+      "scale": {"type": "linear", "scheme": "yelloworangebrown"},
+      "legend":{
+        "title": "Species Persistence"
+      }
+    },
+    "tooltip": [
+      {"field": "properties.SUB_NAME_7", "type": "nominal", "title": "IBRA Subregion"},
+      {"field": "Persistence", "type": "quantitative", "title": "Persistence"}
+    ]
+  },
+  "config": {
+    "background": "transparent"
+  }
+}

@@ -1,6 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "State Distribution of Reptiles",
   "width": "container",
   "height": "container",
   "description": "Distribution of species across Australian states",
@@ -28,7 +27,7 @@
     "color": {
       "field": "Total Species",
       "type": "quantitative",
-      "scale": {"type": "sqrt", "scheme": "greens"}
+      "scale": {"type": "sqrt", "scheme": "goldgreen"}
     },
     "tooltip": [
       {"field": "properties.STE_NAME16", "type": "nominal", "title": "State"},

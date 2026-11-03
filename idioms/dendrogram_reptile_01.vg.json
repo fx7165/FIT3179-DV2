@@ -1,6 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "title": "Australian Reptile Taxonomy",
   "description": "Dendrogram of Australian Reptile Species (order > family > genus).",
   "width": 500,
   "height": 500,

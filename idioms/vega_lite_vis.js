@@ -6,3 +6,6 @@ vegaEmbed("#vg_02", vg_02).then(function(result) {}).catch(console.error);
 
 var vg_03 = "./idioms/bar_reptile_size_03.vg.json";
 vegaEmbed("#vg_03", vg_03).then(function(result) {}).catch(console.error);
+
+var vg_04 = "./idioms/choropleth_species_ibra_04.vg.json";
+vegaEmbed("#vg_04", vg_04).then(function(result) {}).catch(console.error);

@@ -1,10 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "background": "transparent",
-  "title": {
-    "text": "Australian Reptile Sizes",
-    "anchor": "start"
-  },
   "width": "container",
   "height": "container",
   "description": "A bar chart showing the US population distribution of age groups in 2000.",
