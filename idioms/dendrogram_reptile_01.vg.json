@@ -57,7 +57,7 @@
   "data": [
     {
       "name": "raw",
-      "url": "../data_source/aus_species_tree.csv",
+      "url": "https://raw.githubusercontent.com/fx7165/FIT3179-DV2/refs/heads/main/data_source/aus_species_tree.csv",
       "format": {
         "type": "csv",
         "parse": "auto"

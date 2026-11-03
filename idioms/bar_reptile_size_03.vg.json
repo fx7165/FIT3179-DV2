@@ -5,7 +5,7 @@
   "height": "container",
   "description": "A bar chart showing the US population distribution of age groups in 2000.",
   "data": {
-    "url": "../data_source/reptile_sizes.json"
+    "url": "https://raw.githubusercontent.com/fx7165/FIT3179-DV2/refs/heads/main/data_source/reptile_sizes.json"
   },
   "mark": {
     "type": "bar",

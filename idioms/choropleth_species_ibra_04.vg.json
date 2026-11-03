@@ -5,7 +5,7 @@
   "description": "Distribution of species across Australian IBRA Sub-regions",
   "projection": {"type": "mercator"},
   "data": {
-    "url": "../data_source/ibra7_subregions.json",
+    "url": "https://raw.githubusercontent.com/fx7165/FIT3179-DV2/refs/heads/main/data_source/ibra7_subregions.json",
     "format": {"type": "topojson", "feature": "ibra7_subregions"}
   },
   "transform": [
@@ -13,7 +13,7 @@
       "lookup": "properties.SUB_NAME_7",
       "from": {
         "data": {
-          "url": "../data_source/species_persistance_ibra.csv",
+          "url": "https://raw.githubusercontent.com/fx7165/FIT3179-DV2/refs/heads/main/data_source/species_persistance_ibra.csv",
           "format": {"type": "csv"}
         },
         "key": "Region",

@@ -4,7 +4,7 @@
     "width": "container",
     "height": "container",
     "data": {
-        "url": "../data_source/species_persistence_nation.csv",
+        "url": "https://raw.githubusercontent.com/fx7165/FIT3179-DV2/refs/heads/main/data_source/species_persistence_nation.csv",
         "format": {
             "type": "csv"
         }

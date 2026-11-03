@@ -5,7 +5,7 @@
   "description": "Distribution of species across Australian states",
   "projection": {"type": "mercator"},
   "data": {
-    "url": "../data_source/AUS_state_topo.json",
+    "url": "https://raw.githubusercontent.com/fx7165/FIT3179-DV2/refs/heads/main/data_source/AUS_state_topo.json",
     "format": {"type": "topojson", "feature": "STE_2016_AUST"}
   },
   "transform": [
@@ -13,7 +13,7 @@
       "lookup": "properties.STE_NAME16",
       "from": {
         "data": {
-          "url": "../data_source/aus_state_dist.csv",
+          "url": "https://raw.githubusercontent.com/fx7165/FIT3179-DV2/refs/heads/main/data_source/aus_state_dist.csv",
           "format": {"type": "csv"}
         },
         "key": "State",
