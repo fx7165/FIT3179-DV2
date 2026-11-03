@@ -1,36 +1,43 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "",
-  "width": 800,
-  "height": 400,
+  "title": "State Distribution",
+  "width": "container",
+  "height": "container",
   "projection": {"type": "mercator"},
   "data": {
-    "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
-    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+    "url": "../data_source/AUS_state_topo.json",
+    "format": {"type": "topojson", "feature": "STE_2016_AUST"}
   },
   "transform": [
     {
-      "lookup": "properties.NAME",
+      "lookup": "properties.STE_NAME16",
       "from": {
         "data": {
-          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/data/covid_10_10_2020.csv"
+          "url": "../data_source/aus_state_dist.csv",
+          "format": {"type": "csv"}
         },
-        "key": "Country",
-        "fields": ["Active"]
+        "key": "State",
+        "fields": ["State","TotalSpecies","Squamata","Testudines","Crocodilia"]
       }
     },
-    {"calculate": "datum.Active + 0.1", "as": "Active Cases"}
+    {"calculate": "toNumber(datum.TotalSpecies) + 0.1", "as": "Total Species"}
   ],
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": "Active Cases",
+      "field": "Total Species",
       "type": "quantitative",
-      "scale": {"type": "log"}
+      "scale": {"type": "sqrt", "scheme": "greens"}
     },
     "tooltip": [
-      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-      {"field": "Active", "type": "quantitative"}
+      {"field": "properties.STE_NAME16", "type": "nominal", "title": "State"},
+      {"field": "TotalSpecies", "type": "quantitative", "title": "Species"},
+      {"field": "Squamata", "type":"nominal", "title": "Snakes and Lizards"},
+      {"field": "Testudines", "type":"nominal", "title": "Turtles"},
+      {"field": "Crocodilia", "type":"nominal", "title": "Crocodiles"}
     ]
+  },
+  "config": {
+    "background": "transparent"
   }
 }

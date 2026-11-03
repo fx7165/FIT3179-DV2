@@ -1,2 +1,7 @@
 {
+    "workbench.editorAssociations": {
+        "file:/c:/Users/hAAAA/Documents/Engineering/FIT3179/Data Vis 2/FIT3179-DV2/data_source/aus_species_tree.csv": "default",
+        "file:/c:/Users/hAAAA/Documents/Engineering/FIT3179/Data Vis 2/FIT3179-DV2/data_source/aus_state_dist.csv": "default",
+        "file:/c:/Users/hAAAA/Documents/Engineering/FIT3179/Data Vis 2/FIT3179-DV2/data_source/aus_state_distv2.csv": "default"
+    }
 }
