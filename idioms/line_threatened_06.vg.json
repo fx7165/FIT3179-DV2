@@ -1,0 +1,86 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Threatened species by taxonomic group, 2010-2023",
+    "width": "container",
+    "height": "container",
+    "data": {
+        "url": "../data_source/threatened_species_aus.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "transform": [
+        {
+            "fold": [
+                "2010",
+                "2011",
+                "2012",
+                "2013",
+                "2014",
+                "2015",
+                "2016",
+                "2017",
+                "2018",
+                "2019",
+                "2020",
+                "2021",
+                "2022",
+                "2023"
+            ],
+            "as": [
+                "year",
+                "count"
+            ]
+        },
+        {
+            "calculate": "toNumber(datum.year)",
+            "as": "year"
+        },
+        {
+            "calculate": "toNumber(datum.count)",
+            "as": "count"
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "axis": {
+                "format": "d",
+                "tickMinStep": 1
+            }
+        },
+        "y": {
+            "field": "count",
+            "type": "quantitative",
+            "title": "Count"
+        },
+        "color": {
+            "field": "Taxonomic group",
+            "type": "nominal",
+            "title": "Taxonomic group"
+        },
+        "tooltip": [
+            {
+                "field": "Taxonomic group",
+                "type": "nominal"
+            },
+            {
+                "field": "year",
+                "type": "quantitative",
+                "title": "Year",
+                "format": "d"
+            },
+            {
+                "field": "count",
+                "type": "quantitative",
+                "title": "Count"
+            }
+        ]
+    }
+}

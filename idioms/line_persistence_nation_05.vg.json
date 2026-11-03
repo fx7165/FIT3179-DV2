@@ -1,8 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "description": "Species persistence in Australia, 1750 and 1990-2024",
-    "width": 700,
-    "height": 400,
+    "width": "container",
+    "height": "container",
     "data": {
         "url": "../data_source/species_persistence_nation.csv",
         "format": {
