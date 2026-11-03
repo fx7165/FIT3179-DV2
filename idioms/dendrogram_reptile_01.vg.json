@@ -1,0 +1,381 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "title": "Australian Reptile Taxonomy",
+  "description": "Dendrogram of Australian Reptile Species (order > family > genus).",
+  "width": 500,
+  "height": 400,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding",
+    "resize": true
+  },
+  "signals": [
+    {
+      "name": "width",
+      "update": "isFinite(containerSize()[0]) ? containerSize()[0] : 500",
+      "on": [
+        {
+          "events": "window:resize",
+          "update": "isFinite(containerSize()[0]) ? containerSize()[0] : 500"
+        }
+      ]
+    },
+    {
+      "name": "labels",
+      "value": true
+    },
+    {
+      "name": "hovered",
+      "value": null,
+      "on": [
+        {
+          "events": "@nodes:mouseover",
+          "update": "datum.depth === 2 ? datum : null"
+        },
+        {
+          "events": "@nodes:mouseout",
+          "update": "null"
+        }
+      ]
+    },
+    {
+      "name": "popupW",
+      "value": 200
+    },
+    {
+      "name": "popupH",
+      "update": "hovered ? 36 + max(length(data('genera')), 1) * 14 : 0"
+    },
+    {
+      "name": "popupX",
+      "update": "hovered ? max(0, hovered.x - popupW - 15) : 0"
+    },
+    {
+      "name": "popupY",
+      "update": "hovered ? max(0, min(hovered.y - 10, height - popupH)) : 0"
+    }
+  ],
+  "data": [
+    {
+      "name": "raw",
+      "url": "../data_source/aus_species_tree.csv",
+      "format": {
+        "type": "csv",
+        "parse": "auto"
+      }
+    },
+    {
+      "name": "tree",
+      "source": "raw",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "!datum.parent || datum.parent <= 4"
+        },
+        {
+          "type": "stratify",
+          "key": "id",
+          "parentKey": "parent"
+        },
+        {
+          "type": "tree",
+          "method": "cluster",
+          "size": [
+            {
+              "signal": "height"
+            },
+            {
+              "signal": "width - 100"
+            }
+          ],
+          "separation": true,
+          "as": [
+            "y",
+            "x",
+            "depth",
+            "children"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "links",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "treelinks"
+        },
+        {
+          "type": "linkpath",
+          "orient": "horizontal",
+          "shape": "orthogonal"
+        }
+      ]
+    },
+    {
+      "name": "genera",
+      "source": "raw",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "hovered && datum.parent === hovered.id"
+        },
+        {
+          "type": "window",
+          "ops": [
+            "row_number"
+          ],
+          "as": [
+            "rank"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "linear",
+      "range": [
+        "#32b830",
+        "#4144f0",
+        "#a732f0"
+      ],
+      "domain": {
+        "data": "tree",
+        "field": "depth"
+      },
+      "zero": true
+    }
+  ],
+  "marks": [
+    {
+      "type": "path",
+      "from": {
+        "data": "links"
+      },
+      "encode": {
+        "update": {
+          "path": {
+            "field": "path"
+          },
+          "stroke": {
+            "value": "#ccc"
+          }
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "name": "nodes",
+      "from": {
+        "data": "tree"
+      },
+      "encode": {
+        "enter": {
+          "size": {
+            "value": 100
+          }
+        },
+        "update": {
+          "x": {
+            "field": "x"
+          },
+          "y": {
+            "field": "y"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "depth"
+          },
+          "stroke": [
+            {
+              "test": "hovered && hovered.id === datum.id",
+              "value": "#000"
+            },
+            {
+              "value": "#fff"
+            }
+          ],
+          "strokeWidth": [
+            {
+              "test": "hovered && hovered.id === datum.id",
+              "value": 2
+            },
+            {
+              "value": 1
+            }
+          ],
+          "cursor": [
+            {
+              "test": "datum.depth === 2",
+              "value": "pointer"
+            },
+            {
+              "value": "default"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "tree"
+      },
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "text": {
+            "field": "name"
+          },
+          "fontSize": {
+            "value": 16
+          },
+          "baseline": {
+            "value": "middle"
+          }
+        },
+        "update": {
+          "x": {
+            "field": "x"
+          },
+          "y": {
+            "field": "y"
+          },
+          "dx": {
+            "signal": "datum.children ? -7 : 7"
+          },
+          "align": {
+            "signal": "datum.children ? 'right' : 'left'"
+          },
+          "opacity": {
+            "signal": "labels"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "popupX"
+          },
+          "y": {
+            "signal": "popupY"
+          },
+          "width": {
+            "signal": "popupW"
+          },
+          "height": {
+            "signal": "popupH"
+          },
+          "fill": {
+            "value": "#ffffff"
+          },
+          "stroke": {
+            "value": "#888"
+          },
+          "cornerRadius": {
+            "value": 4
+          },
+          "fillOpacity": {
+            "signal": "hovered ? 0.97 : 0"
+          },
+          "strokeOpacity": {
+            "signal": "hovered ? 1 : 0"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "popupX + 10"
+          },
+          "y": {
+            "signal": "popupY + 16"
+          },
+          "text": {
+            "signal": "hovered ? hovered.name + ' (' + length(data('genera')) + ' genera)' : ''"
+          },
+          "fontSize": {
+            "value": 14
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "fill": {
+            "value": "#000"
+          },
+          "baseline": {
+            "value": "middle"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "popupX + 10"
+          },
+          "y": {
+            "signal": "popupY + 36"
+          },
+          "text": {
+            "value": "No genus data"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fill": {
+            "value": "#666"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "opacity": {
+            "signal": "hovered && length(data('genera')) === 0 ? 1 : 0"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "genera"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "popupX + 10"
+          },
+          "y": {
+            "signal": "popupY + 36 + (datum.rank - 1) * 14"
+          },
+          "text": {
+            "signal": "datum.name + ': ' + datum.value"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fill": {
+            "value": "#222"
+          },
+          "baseline": {
+            "value": "middle"
+          }
+        }
+      }
+    }
+  ]
+}

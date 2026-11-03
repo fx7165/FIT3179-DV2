@@ -1,8 +1,57 @@
 #page {
-    background-color: bisque;
+    background-color: #f8e5d0;
     color: blue;
 }
 
-#section_heading {
-    color:red;
+#section_title {
+    color:#997750;
+    font-size: 48px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-top: 24px;
+    margin-left: 6px;
+}
+
+#page_title{
+    color:#ffa844;
+    font-size: 100px;
+    font-family: 'Stencil Std', fantasy;
+    font-weight: bold;
+    font-variant: small-caps;
+    letter-spacing: 5px;
+}
+
+#page_subtitle {
+    color: #555555;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: normal;
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-top: -10px;
+}
+
+#centre_div{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#paragraph_text{
+    color:#0a71f0;
+    font-size: 24px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+#reptile_section{
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    gap: 5%;
+    margin-left: 8px;
+    margin-right: 8px;
 }

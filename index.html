@@ -2,15 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
 
-    <title>Data Visualisation 2 - FIT3179</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <script src="./idioms/vega_lite_vis.js"></script>
+
+    <title>Australian Reptiles - FIT3179 DV2</title>
 </head>
 <body id="page">
-    <p id="text1">
-        Hello World
-    </p>
+    <div id="centre_div">
+        <div id="page_title">
+            Australian Reptiles
+        </div>
+        <div id="page_subtitle">
+            Author: Fred Xu, 33113963 | Github: fx7165
+        </div>
+
+    </div>
+
+    <div id="section_title">Reptiles in Australia</div>
+
+    <div id="reptile_section">
+        <div id="paragraph_text" style="width: 33%;">
+            Reptiles are a broad class divided into three orders 
+            within Australia, according to the Australian Reptile 
+            Online Database: Testudines (turtles), Crocodilia (crocodiles), 
+            and Squamata (lizards and snakes). Squamata forms the vast 
+            majority of the population, boasting 1,033 distinct Australian 
+            species. Conversely, Crocodilia is the smallest order, 
+            represented by just two native species: the saltwater and 
+            freshwater crocodiles.
+        </div>
+
+        <div id="vg_01" style="width: 62%;"></div>
+    </div>
+    
 </body>
 </html>
